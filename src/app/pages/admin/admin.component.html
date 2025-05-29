@@ -1,0 +1,42 @@
+<div class="admin-page d-flex">
+  <!-- Sidebar --><div class="aside">
+  <div class="aside-container">
+    <div class="aside-header">
+      <i class="bi bi-person-rolodex"></i>
+      <span class="pg-16">Admin Page</span>
+    </div>
+
+    <div class="aside-field-group">
+      <a routerLink="/admin/users">
+        <i class="bi bi-people-fill"></i>
+        <span class="pg-16">Все пользователи</span>
+      </a>
+    </div>
+
+    <div class="aside-field-group">
+      <a routerLink="/admin/goods">
+        <i class="bi bi-bag-check-fill"></i>
+        <span class="pg-16">Все товары</span>
+      </a>
+    </div>
+
+    <div class="aside-field-group">
+      <a routerLink="/admin/categories">
+        <i class="bi bi-database-fill"></i>
+        <span class="pg-16">Категории </span>
+      </a>
+    </div>
+  </div>
+
+  <div class="aside-field-group">
+    <button (click)="logout()" class="logout-btn">
+      <i class="bi bi-box-arrow-left"></i>
+      Выйти из аккаунта
+    </button>
+  </div>
+  
+</div>
+<!-- Main Content -->
+<div class="admin-content">
+  <router-outlet></router-outlet>
+</div>

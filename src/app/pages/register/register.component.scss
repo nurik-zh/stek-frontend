@@ -1,0 +1,69 @@
+$primary-color: #3f51b5;
+
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to right, #e8eaf6, #c5cae9);
+
+  mat-card {
+    max-width: 400px;
+    width: 100%;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    background-color: white;
+
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      color: $primary-color;
+      margin-bottom: 20px;
+    }
+
+    .full-width {
+      width: 100%;
+      margin-top: 15px;
+    }
+
+    mat-form-field.mat-form-field-appearance-outline {
+      .mat-form-field-outline-thick {
+        color: $primary-color;
+        border-color: $primary-color;
+      }
+
+      .mat-form-field-label {
+        color: $primary-color;
+      }
+
+      .mat-input-element {
+        caret-color: $primary-color;
+      }
+
+      .mat-form-field-ripple {
+        background-color: $primary-color;
+      }
+    }
+
+    button {
+      margin-top: 20px;
+    }
+  }
+}
+.register-text {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 14px;
+
+  a {
+    color: $primary-color;
+    text-decoration: none;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<h2>Категории</h2>
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Название</th>
+      <th>Действие</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let category of categories">
+      <td>{{ category._id }}</td>
+      <td>{{ category.name }}</td>
+      <td>
+        <button class="delete-btn" (click)="deleteCategory(category._id)">Удалить</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,97 @@
+/* Sidebar контейнер */
+.aside {
+  background-color: #223e9c;
+  width: 20%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px; /* отступ внутри всей боковой панели */
+}
+
+/* Заголовок меню */
+.aside-header {
+  background-color: #183188;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.aside-header i {
+  margin-right: 15px; /* расстояние между иконкой и текстом */
+}
+
+/* Элемент меню */
+.aside-field-group a,
+.aside-field-group button {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: background-color 0.2s ease;
+  background-color: transparent;
+}
+
+.aside-field-group a:hover,
+.aside-field-group button:hover {
+  background-color: #1a2e77;
+}
+
+.aside-field-group i {
+  font-size: 18px;
+  margin-right: 14px; /* расстояние между иконкой и текстом */
+}
+
+/* Logout кнопка */
+.logout-btn {
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 10px 16px;
+  color: white;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.logout-btn:hover {
+  background-color: #1a2e77;
+}
+
+.admin-page {
+  display: flex;
+  height: 100vh;
+}
+
+.admin-content {
+  flex-grow: 1;
+  padding: 24px;
+  background-color: #f8f9fa;
+  overflow-y: auto;
+}
+.admin-table {
+  padding: 20px;
+}
+
+.admin-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th, .admin-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.admin-table th {
+  background-color: #f2f2f2;
+}

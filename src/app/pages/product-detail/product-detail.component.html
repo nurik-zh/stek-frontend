@@ -1,0 +1,68 @@
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="logo">OLX KZ</div>
+
+  <div class="links">
+    <!-- Авторизован -->
+    <ng-container *ngIf="isLoggedIn">
+      <div class="profile-menu" (click)="toggleDropdown()" tabindex="0" (blur)="hideDropdown()">
+        <img src="https://i1.sndcdn.com/avatars-4CyQHzjhyL68JW5K-iYFVDw-t1080x1080.jpg" alt="Avatar" class="avatar" />
+        <span>{{ currentUser.username }}</span>
+
+        <div class="dropdown" *ngIf="showDropdown">
+          <a routerLink="/profile">Профиль</a>
+          <button (click)="logout()">Выйти</button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</nav>
+
+<!-- Страница одного товара -->
+<section *ngIf="product" class="product-detail-container">
+  <div class="product-detail-card animate-fadeIn">
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
+      alt="{{ product.title }}"
+      class="product-detail-image"
+    />
+    <div class="product-detail-info">
+      <h2>{{ product.title }}</h2>
+      <p><strong>Цена:</strong> {{ product.price }} ₸</p>
+      <p><strong>Описание:</strong> {{ product.description }}</p>
+      <p><strong>Категория:</strong> {{ product.category?.name || '—' }}</p>
+      <p><strong>Пользователь:</strong> {{ product.user?.email || '—' }}</p>
+      <button class="back-button" (click)="goBack()">← Назад</button>
+    </div>
+  </div>
+</section>
+
+<section *ngIf="!product" class="loading">
+  <p>Загрузка товара...</p>
+</section>
+
+<!-- Footer -->
+<footer class="footer-container">
+  <div class="footer-logo">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE42TE9vxpwWvB_abpGkBzFyesMOsYxil7lF9m6xuG16dysQ23l9kyeZx6mykiTbCYj2k&usqp=CAU" alt="OLX Logo" class="olx-logo" />
+  </div>
+
+  <div class="footer-text">
+    <p class="footer-title">Крупнейший онлайн-сервис объявлений Казахстана</p>
+    <p>
+      Все онлайн-объявления Казахстана на OLX – здесь вы найдете то, что искали! Нажав на кнопку "Подать объявление", вы сможете разместить объявление на любую тематику легко и быстро.
+    </p>
+    <p>
+      С помощью сервиса OLX вы сможете купить или продать из рук в руки практически все, что угодно.
+    </p>
+  </div>
+
+  <div class="footer-socials">
+    <p>Сообщества OLX.kz в социальных сетях:</p>
+    <div class="icons">
+      <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
+      <a href="#"><i class="fab fa-instagram fa-2x"></i></a>
+      <a href="#"><i class="fab fa-youtube fa-2x"></i></a>
+    </div>
+  </div>
+</footer>

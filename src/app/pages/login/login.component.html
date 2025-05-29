@@ -1,0 +1,40 @@
+<div class="login-container">
+  <mat-card>
+    <mat-card-title>Вход в систему</mat-card-title>
+    <mat-card-subtitle>Пожалуйста, авторизуйтесь</mat-card-subtitle>
+    <mat-card-content>
+      <form (ngSubmit)="onSubmit()" #loginForm="ngForm" autocomplete="off">
+        <mat-form-field appearance="outline" class="full-width color-accent">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            type="email"
+            [(ngModel)]="email"
+            name="email"
+            required
+            autocomplete="email"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width color-accent">
+          <mat-label>Пароль</mat-label>
+          <input
+            matInput
+            type="password"
+            [(ngModel)]="password"
+            name="password"
+            required
+            autocomplete="current-password"
+          />
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" class="full-width">
+          Войти
+        </button>
+      </form>
+      <p class="register-text">
+        Нет аккаунта? <a routerLink="/register">Создать</a>
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
