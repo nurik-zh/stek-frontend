@@ -4,6 +4,7 @@ import { ActivatedRoute, Router} from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 import { Location } from '@angular/common';
+import { environment } from '../../../environments/environment'
 
 @Component({
   selector: 'app-product-detail',
@@ -32,7 +33,7 @@ export class ProductDetailComponent {
     
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.http.get(`http://localhost:5000/api/products/${id}`).subscribe({
+      this.http.get(`${environment.apiUrl}/products/${id}`).subscribe({
         next: (data) => this.product = data,
         error: (err) => console.error('Ошибка загрузки товара:', err)
       });
