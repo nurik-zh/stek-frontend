@@ -101,11 +101,15 @@ export class HomeComponent implements OnInit {
   }
 
   deleteProduct(id: string) {
+    const confirmed = window.confirm('Вы точно хотите удалить этот товар?');
+    if (!confirmed) return;
+
     this.productService.deleteProduct(id).subscribe({
       next: () => this.loadProducts(),
       error: (err) => console.error('Ошибка при удалении:', err)
     });
   }
+
 
   submitProduct() {
     const { title, description, price, category } = this.newProduct;
