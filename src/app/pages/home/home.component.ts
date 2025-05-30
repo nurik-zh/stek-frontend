@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit {
     this.productService.searchProducts(this.searchTerm).subscribe({
       next: (data) => {
         this.filteredProducts = data;
-        this.sortProducts();
+        // this.sortProducts();
       },
       error: (err) => console.error('Ошибка поиска', err)
     });
@@ -84,12 +84,12 @@ export class HomeComponent implements OnInit {
     this.filteredProducts = this.products.filter(
       (product) => product.category && product.category._id == categoryId
     );
-    this.sortProducts();
+    // this.sortProducts();
   }
 
   resetFilter() {
     this.filteredProducts = [...this.products];
-    this.sortProducts();
+    // this.sortProducts();
   }
 
 
