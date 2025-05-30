@@ -71,7 +71,10 @@ export class HomeComponent implements OnInit {
 
   searchProducts() {
     this.productService.searchProducts(this.searchTerm).subscribe({
-      next: (data) => this.filteredProducts = data,
+      next: (data) => {
+        this.filteredProducts = data;
+        this.sortProducts();
+      },
       error: (err) => console.error('Ошибка поиска', err)
     });
   }
@@ -80,11 +83,14 @@ export class HomeComponent implements OnInit {
     this.filteredProducts = this.products.filter(
       (product) => product.category && product.category._id == categoryId
     );
+    this.sortProducts();
   }
 
   resetFilter() {
-    this.filteredProducts = this.products;
+    this.filteredProducts = [...this.products];
+    this.sortProducts();
   }
+
 
   isMyProduct(product: any): boolean {
     return this.currentUser && product.user._id == this.currentUser.id;
@@ -153,6 +159,19 @@ export class HomeComponent implements OnInit {
   hideDropdown() {
     setTimeout(() => this.showDropdown = false, 150);
   }
+  sortOrder: string = 'none';
+
+  sortProducts() {
+    if (this.sortOrder === 'asc') {
+      this.filteredProducts.sort((a, b) => a.price - b.price);
+    } else if (this.sortOrder === 'desc') {
+      this.filteredProducts.sort((a, b) => b.price - a.price);
+    } else {
+      // Без сортировки – сброс к оригинальному списку
+      this.filteredProducts = [...this.products];
+    }
+  }
+
 
   logout() {
     this.authService.logout();

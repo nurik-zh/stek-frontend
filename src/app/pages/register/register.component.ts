@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Component({
   standalone: true,
@@ -34,7 +35,7 @@ export class RegisterComponent {
   onSubmit() {
     const payload = { username: this.username, email: this.email, password: this.password };
 
-    this.http.post('http://localhost:5000/api/auth/register', payload)
+    this.http.post(`${environment.apiUrl}/auth/register`, payload)
       .subscribe({
         next: () => {
           alert('Регистрация прошла успешно!');

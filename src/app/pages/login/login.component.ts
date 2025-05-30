@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Component({
   standalone: true,
@@ -33,7 +34,7 @@ export class LoginComponent {
   onSubmit() {
     const payload = { email: this.email, password: this.password };
 
-    this.http.post('http://localhost:5000/api/auth/login', payload)
+    this.http.post(`${environment.apiUrl}/auth/login`, payload)
       .subscribe({
         next: (res: any) => {
           console.log(res)

@@ -16,9 +16,9 @@ import { RouterModule } from '@angular/router';
   imports: [CommonModule, RouterModule]
 })
 export class AdminComponent implements OnInit {
-  users: User[] = [];
-  products: any[] = [];
-  categories: Category[] = [];
+  // users: User[] = [];
+  // products: any[] = [];
+  // categories: Category[] = [];
 
   constructor(
     private userService: UserService,
@@ -30,9 +30,9 @@ export class AdminComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.userService.getUsers().subscribe(res => this.users = res);
-    this.productService.getProducts().subscribe(res => this.products = res);
-    this.categoryService.getCategories().subscribe(res => this.categories = res);
+    // this.userService.getUsers().subscribe(res => this.users = res);
+    // this.productService.getProducts().subscribe(res => this.products = res);
+    // this.categoryService.getCategories().subscribe(res => this.categories = res);
   }
 
   logout() {

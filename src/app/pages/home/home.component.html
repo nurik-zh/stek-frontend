@@ -63,19 +63,18 @@
   </div>
 </nav>
 
-<!-- Поиск -->
 <section class="search-section">
   <div class="search-box">
     <input type="text" placeholder="🔍 Поиск товаров по имени..." [(ngModel)]="searchTerm"/>
     <button (click)="searchProducts()">Искать</button>
     <button (click)="resetFilter()" class="bt2">Отменить</button>
   </div>
-</section>
 
+</section>
 
 <!-- Категории -->
 <section class="categories">
-  <h3>Категории</h3>
+  <h3 class="fw-bold">Категории</h3>
   <div class="category-list">
     <div class="category" *ngFor="let cat of categories" (click)="filterByCategory(cat._id)">
       <a class="category-card">
@@ -93,6 +92,19 @@
   <img src="https://mydukaan.io/blog/wp-content/uploads/Frame-1.png" alt="Скидки" class="banner-image" />
 </section> -->
 
+<!-- Верхняя панель фильтров -->
+<section class="filter-bar" style="display: flex; align-items: center; padding: 0 1rem; margin-bottom: 1rem;">
+  <h3 class="fw-bold">Все товары</h3>
+
+  <div style="display: flex; align-items: center; gap: 0.5rem;">
+    <label for="sortSelect" class="fw-bold">Сортировать по цене:</label>
+    <select id="sortSelect" [(ngModel)]="sortOrder" (change)="sortProducts()">
+      <option value="none">Без сортировки</option>
+      <option value="asc">Сначала дешевые</option>
+      <option value="desc">Сначала дорогие</option>
+    </select>
+  </div>
+</section>
 
 <!-- Сетка товаров -->
 <section class="product-grid">

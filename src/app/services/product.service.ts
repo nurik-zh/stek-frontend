@@ -43,8 +43,6 @@ export class ProductService {
     return this.http.put(`${this.apiUrl}/${id}`, product, { headers });
   }
 
-
-
   deleteProduct(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`, {
       headers: this.getAuthHeaders()
