@@ -45,7 +45,8 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.isLoggedIn = true;
+    // this.isLoggedIn = true;
+    this.isLoggedIn = this.authService.isLoggedIn();
     this.currentUser = this.authService.getUser();
 
     this.loadCategories();
@@ -173,8 +174,14 @@ export class HomeComponent implements OnInit {
   }
 
 
+  // logout() {
+  //   this.authService.logout();
+  //   this.router.navigate(['/login']);
+  // }
   logout() {
-    this.authService.logout();
-    this.router.navigate(['/login']);
-  }
+  this.authService.logout();
+  this.isLoggedIn = false;
+  this.currentUser = null;
+  this.router.navigate(['/login']);
+}
 }
