@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { MatError } from '@angular/material/form-field';
 
 @Component({
   standalone: true,
@@ -22,7 +23,8 @@ import { environment } from '../../../environments/environment';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatError
   ]
 })
 export class RegisterComponent {
@@ -32,7 +34,11 @@ export class RegisterComponent {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  onSubmit() {
+  onSubmit(form: any) {
+    if (form.invalid) {
+      return;
+    }
+
     const payload = { username: this.username, email: this.email, password: this.password };
 
     this.http.post(`${environment.apiUrl}/auth/register`, payload)
@@ -42,8 +48,7 @@ export class RegisterComponent {
           this.router.navigate(['/login']);
         },
         error: (err) => {
-          console.error(err); 
-          alert('Ошибка при регистрации');
+          console.log(err); 
         }
       });
   }

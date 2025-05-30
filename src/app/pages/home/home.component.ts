@@ -29,6 +29,9 @@ export class HomeComponent implements OnInit {
 
   searchTerm: string = '';
 
+  errorMessage: string = '';
+
+
   newProduct = {
     title: '',
     description: '',
@@ -105,14 +108,30 @@ export class HomeComponent implements OnInit {
   }
 
   submitProduct() {
+    const { title, description, price, category } = this.newProduct;
+
+    if (!title || !description || !category || price === null || price === undefined) {
+      this.errorMessage = 'Все поля должны быть заполнены.';
+      return;
+    }
+
+    if (price <= 0) {
+      this.errorMessage = 'Цена товара не может быть ниже 0 ₸.';
+      return;
+    }
+
     this.productService.createProduct(this.newProduct).subscribe({
       next: () => {
         this.loadProducts();
         this.closeForm();
       },
-      error: (err) => console.error('Ошибка при создании товара', err)
+      error: (err) => {
+        console.error('Ошибка при создании товара', err);
+        this.errorMessage = 'Не удалось создать товар. Попробуйте снова.';
+      }
     });
   }
+
 
   editProduct(product: any) {
     this.editMode = true;
@@ -128,6 +147,17 @@ export class HomeComponent implements OnInit {
 
   updateProduct() {
     if (!this.editedProductId) return;
+    const { title, description, price, category } = this.newProduct;
+
+    if (!title || !description || !category || price === null || price === undefined) {
+      this.errorMessage = 'Все поля должны быть заполнены.';
+      return;
+    }
+
+    if (price <= 0) {
+      this.errorMessage = 'Цена товара не может быть ниже 0 ₸.';
+      return;
+    }
     this.productService.updateProduct(this.editedProductId, this.newProduct).subscribe({
       next: () => {
         this.loadProducts();
@@ -142,6 +172,7 @@ export class HomeComponent implements OnInit {
     this.editMode = false;
     this.editedProductId = null;
     this.resetForm();
+    this.errorMessage = '';
   }
 
   resetForm() {
@@ -179,9 +210,9 @@ export class HomeComponent implements OnInit {
   //   this.router.navigate(['/login']);
   // }
   logout() {
-  this.authService.logout();
-  this.isLoggedIn = false;
-  this.currentUser = null;
-  this.router.navigate(['/login']);
-}
+    this.authService.logout();
+    this.isLoggedIn = false;
+    this.currentUser = null;
+    this.router.navigate(['/login']);
+  }
 }

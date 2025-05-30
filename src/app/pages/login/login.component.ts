@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { MatError } from '@angular/material/form-field';
 
 @Component({
   standalone: true,
@@ -22,7 +23,8 @@ import { environment } from '../../../environments/environment';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatError
   ]
 })
 export class LoginComponent {
@@ -31,13 +33,16 @@ export class LoginComponent {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  onSubmit() {
+  onSubmit(form: any) {
+    if (form.invalid) {
+      return;
+    }
+
     const payload = { email: this.email, password: this.password };
 
     this.http.post(`${environment.apiUrl}/auth/login`, payload)
       .subscribe({
         next: (res: any) => {
-          console.log(res)
           localStorage.setItem('token', res.token);
           localStorage.setItem('user', JSON.stringify(res.user));
           if(res.user.role === "admin"){

@@ -4,44 +4,43 @@
 
   <div class="links">
     <!-- Кнопка открытия модалки -->
-  <button (click)="showForm = true" *ngIf="isLoggedIn" class="post-btn modern-btn">Подать объявление</button>
+    <button (click)="showForm = true" *ngIf="isLoggedIn" class="post-btn modern-btn">Подать объявление</button>
 
-  <!-- Модалка -->
-  <div class="modal-backdrop" *ngIf="showForm">
-    <div class="modal-window animate-scaleIn">
-      <!-- Закрыть -->
-      <button class="modal-close" (click)="closeForm()">&times;</button>
+    <!-- Модалка -->
+    <div class="modal-backdrop" *ngIf="showForm">
+      <div class="modal-window animate-scaleIn">
+        <!-- Закрыть -->
+        <button class="modal-close" (click)="closeForm()">&times;</button>
 
-      <h2 class="modal-title">
-        {{ editMode ? 'Редактировать товар' : 'Добавить товар' }}
-      </h2>
+        <h2 class="modal-title">
+          {{ editMode ? 'Редактировать товар' : 'Добавить товар' }}
+        </h2>
 
-      <form (ngSubmit)="editMode ? updateProduct() : submitProduct()" #productForm="ngForm">
-        <input type="text" name="title" [(ngModel)]="newProduct.title" placeholder="Название товара" required />
-        
-        <textarea name="description" [(ngModel)]="newProduct.description" placeholder="Описание товара" rows="3" required></textarea>
-        
-        <input type="number" name="price" [(ngModel)]="newProduct.price" placeholder="Цена в ₸" required />
-        
-        <select name="category" [(ngModel)]="newProduct.category" required>
-          <option value="" disabled selected>Выберите категорию</option>
-          <option *ngFor="let category of categories" [value]="category._id">{{ category.name }}</option>
-        </select>
+        <form (ngSubmit)="editMode ? updateProduct() : submitProduct()" #productForm="ngForm">
+          <input type="text" name="title" [(ngModel)]="newProduct.title" placeholder="Название товара" required />
+          
+          <textarea name="description" [(ngModel)]="newProduct.description" placeholder="Описание товара" rows="3" required></textarea>
+          
+          <input type="number" name="price" [(ngModel)]="newProduct.price" placeholder="Цена в ₸" required />
+          
+          <select name="category" [(ngModel)]="newProduct.category" required>
+            <option value="" disabled selected>Выберите категорию</option>
+            <option *ngFor="let category of categories" [value]="category._id">{{ category.name }}</option>
+          </select>
+          <div *ngIf="errorMessage" class="error-msg">
+            {{ errorMessage }}
+          </div>
 
-        <div class="form-actions">
-          <button type="submit" class="btn-submit">
-            {{ editMode ? 'Сохранить' : 'Добавить' }}
-          </button>
-          <button type="button" class="btn-cancel" (click)="closeForm()">Отмена</button>
-        </div>
-      </form>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-submit">
+              {{ editMode ? 'Сохранить' : 'Добавить' }}
+            </button>
+            <button type="button" class="btn-cancel" (click)="closeForm()">Отмена</button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
-
-
-
-    
-    <!-- <a routerLink="/home">Главная</a> -->
 
     <!-- Не авторизован -->
     <ng-container *ngIf="!isLoggedIn">

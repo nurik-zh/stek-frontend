@@ -1,26 +1,68 @@
 <div class="register-container">
   <mat-card>
     <h2 class="title">Регистрация</h2>
-    <form (ngSubmit)="onSubmit()" #registerForm="ngForm" autocomplete="off">
+    <form (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm" autocomplete="off">
+      
+      <!-- Имя -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Имя</mat-label>
-        <input matInput [(ngModel)]="username" name="username" required />
+        <input
+          matInput
+          [(ngModel)]="username"
+          name="username"
+          #usernameInput="ngModel"
+          required
+        />
+        <mat-error *ngIf="usernameInput.invalid && (usernameInput.touched || registerForm.submitted)">
+          Имя обязательно
+        </mat-error>
       </mat-form-field>
 
+      <!-- Email -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Email</mat-label>
-        <input matInput [(ngModel)]="email" name="email" required />
+        <input
+          matInput
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          #emailInput="ngModel"
+          required
+          email
+        />
+        <mat-error *ngIf="emailInput.errors?.['required'] && (emailInput.touched || registerForm.submitted)">
+          Email обязателен
+        </mat-error>
+        <mat-error *ngIf="emailInput.errors?.['email'] && (emailInput.touched || registerForm.submitted)">
+          Неверный формат email
+        </mat-error>
       </mat-form-field>
 
+      <!-- Пароль -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Пароль</mat-label>
-        <input matInput type="password" [(ngModel)]="password" name="password" required />
+        <input
+          matInput
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          #passwordInput="ngModel"
+          required
+          minlength="6"
+        />
+        <mat-error *ngIf="passwordInput.errors?.['required'] && (passwordInput.touched || registerForm.submitted)">
+          Пароль обязателен
+        </mat-error>
+        <mat-error *ngIf="passwordInput.errors?.['minlength'] && (passwordInput.touched || registerForm.submitted)">
+          Минимум 6 символов
+        </mat-error>
       </mat-form-field>
 
       <button mat-raised-button color="primary" type="submit" class="full-width">
         Зарегистрироваться
       </button>
     </form>
+
     <p class="register-text">
       <a routerLink="/login">Войти с аккаунтом</a>
     </p>
